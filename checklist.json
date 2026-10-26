@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "question": "Is the data collection approved?",
+    "verdict": "Ethics approval and consent handling are reported",
+    "evidence": "The Human Subjects statement reports approval CERSES-20-058-D and states that consent was obtained or waived. Images were collected from existing public sources and de-identified before analysis. [1, pp. 2 and 7]",
+    "assessment": "This supports ethical oversight of the retrospective study. Public availability alone would not establish permission for every secondary use. No prospective study registration is reported; that reporting gap should not be treated as evidence that the study lacked ethics approval.",
+    "action": "Retain the approval identifier, data attribution and applicable source terms. A future prospective clinical evaluation would require an appropriate protocol and approvals.",
+    "lecture": "Lecture 9, pp. 11 and 14",
+    "zh": "论文报告伦理批准 CERSES-20-058-D，以及知情同意已取得或获豁免。应评价为伦理信息已报告，不能因为没有看到试验注册号就断言研究未获伦理批准。"
+  },
+  {
+    "id": 2,
+    "question": "Is the data collected properly?",
+    "verdict": "Sources are described but representativeness is uncertain",
+    "evidence": "The study uses 94 PA chest radiographs from a public collection, sourced internationally from December 2019 to March 2020. Patients were reported COVID-19 positive, mostly by RT-PCR. [1, p. 2, Section 2.1]",
+    "assessment": "The collection is a small convenience sample assembled partly from publications and image-sharing platforms, rather than a defined consecutive clinical cohort. International sources provide diversity but do not establish representative sampling or independent external validation. Exclusion rules and the patient flow are insufficiently detailed.",
+    "action": "Publish a case flow, patient-level denominators, acquisition settings and inclusion criteria. Validate on consecutive cases from hospitals not involved in model development.",
+    "lecture": "Lecture 9, pp. 11 and 14",
+    "zh": "94 张影像来自公开病例集合，来源国际化，但属于便利样本。多来源不等于有代表性的多中心验证，也不能保证能够推广到日常连续就诊患者。"
+  },
+  {
+    "id": 3,
+    "question": "Is the data of good quality?",
+    "verdict": "Expert labels are a strength but label uncertainty remains",
+    "evidence": "Three blinded experts, including two experienced chest radiologists, scored geographic extent and opacity. Fleiss' kappa was 0.71 for extent and 0.45 for opacity. The paper states that there was no missing data. [1, p. 2, Sections 2.1 and 2.2]",
+    "assessment": "Expert review provides a defensible reference for radiographic severity, although opacity labels show appreciable reader disagreement. A mean expert score is not a clinical outcome. In our fixed public snapshot all 94 targets are present, but age is missing for 25 image records and sex for 17; the paper's missingness statement should therefore not be generalized to all clinical metadata.",
+    "action": "Report missingness separately for targets and covariates, distinguish images from patients, inspect duplicates and image artifacts, and account for reader variability when interpreting model error.",
+    "lecture": "Lecture 9, pp. 11 and 15",
+    "zh": "专家评分可靠性是优点，但 opacity 的评分一致性较低。我们的历史快照中评分完整，年龄缺失 25 条、性别缺失 17 条，因此不能把无缺失泛化到全部临床资料。这些缺失变量未用于本次模型。"
+  },
+  {
+    "id": 4,
+    "question": "How is data preprocessed?",
+    "verdict": "The main image transformations are clearly specified",
+    "evidence": "Images are center-cropped where needed, resized to 224 by 224 pixels and scaled to approximately -1024 to 1024. The pretrained network is frozen before generating features for the regression models. [1, pp. 2-3, Sections 2.4 and 2.5]",
+    "assessment": "This gives a reproducible basic pipeline. However, center-cropping can remove peripheral anatomy, and resizing can obscure small findings. The study does not establish robustness to these choices, acquisition artifacts or differences in radiographic views. Frozen feature extraction does not itself require fitting on the COVID-19 test labels.",
+    "action": "Record implementation versions and test clinically plausible preprocessing changes. Any fitted scaler, PCA or feature selector introduced in an extension must be fitted within training folds only.",
+    "lecture": "Lecture 9, pp. 11 and 15",
+    "zh": "中心裁剪、224×224 缩放和像素归一化描述清楚。潜在问题是外周肺野被裁掉或细节损失。新增标准化或 PCA 时，应仅在训练折拟合；本实验已遵守这一点。"
+  },
+  {
+    "id": 5,
+    "question": "What ML models are used?",
+    "verdict": "A sensible transfer learning design with limited alternatives",
+    "evidence": "DenseNet was pretrained on 88,079 non-COVID-19 images from seven datasets. Frozen representations of 1024, 18, 4 or 1 dimensions feed ordinary linear regression, alongside an intercept-only baseline. The task outputs are pre-sigmoid logits. [1, pp. 2-4 and Figure 1]",
+    "assessment": "Learning only a small regression head is appropriate for scarce labels. The reported 1+1 parameter count describes the new regression head, not the whole pretrained network. Comparing unregularized high-dimensional regression with a single feature does not establish that high-dimensional representations contain less useful information.",
+    "action": "Compare regularized regressors on the same frozen features and patient splits. We test Ridge regression and RBF support vector regression, with training-only hyperparameter selection.",
+    "lecture": "Lecture 9, pp. 11 and 16",
+    "zh": "方法是冻结 DenseNet 加线性回归，并非用 94 张图重新训练大型网络。1+1 只表示新拟合回归头的参数。高维普通回归较差，不足以证明高维特征本身没有价值。"
+  },
+  {
+    "id": 6,
+    "question": "How is the data split?",
+    "verdict": "Patient grouping is appropriate but evaluation is internal",
+    "evidence": "The 94 images are repeatedly divided approximately 50/50, keeping all timepoints of the same patient together. Table 1 summarizes 50 random train/test splits. [1, pp. 3-4, Section 2.5 and Table 1]",
+    "assessment": "Patient grouping addresses direct leakage between repeated scans. The image counts need not be exactly balanced because the allocation is by patients. Repeated test sets overlap, so their results are dependent. Ranking feature configurations on the same repeated test sets also leaves uncertainty about model-selection optimism.",
+    "action": "Save patient split manifests, reserve test predictions for evaluation and tune alternatives using nested grouped validation. For deployment claims, add hospital-level or temporal external testing.",
+    "lecture": "Lecture 9, pp. 11 and 17",
+    "zh": "同一患者全部影像留在同一侧，能够避免最直接的患者泄漏。50 次测试集会重叠，不能当作 50 个独立样本。本实验保存划分，并在每个训练集内用五折患者分组验证选参。"
+  },
+  {
+    "id": 7,
+    "question": "Are the metrics appropriate?",
+    "verdict": "Regression metrics are suitable but uncertainty and calibration need more work",
+    "evidence": "Table 1 reports MAE, MSE, R-squared and Pearson correlation as means and standard deviations over 50 splits. Figure 2 compares predictions with expert scores and shows systematic overestimation at low scores and underestimation at high scores. [1, p. 4]",
+    "assessment": "MAE is interpretable in score units and MSE emphasizes extreme errors. Pearson correlation is not accuracy and can remain high despite miscalibration. Split standard deviations are not confidence intervals. The clinical significance of a one-point error is not established, and subgroup performance and prediction intervals are absent.",
+    "action": "Use held-out MAE as the primary endpoint, retain complementary metrics and inspect score-stratified signed errors. State the dependence of repeated splits and avoid claiming statistical superiority from a small mean difference alone.",
+    "lecture": "Lecture 9, pp. 11, 17 and 23",
+    "zh": "MAE、MSE、R² 和相关系数适合回归任务；相关系数 0.8 不能写成准确率 80%。50 次划分的标准差不是置信区间，还需检查高评分低估和预测校准。"
+  },
+  {
+    "id": 8,
+    "question": "Are the results explainable?",
+    "verdict": "Qualitative explanations are provided but not validated for fidelity",
+    "evidence": "Figure 4 displays smoothed input-gradient saliency for selected correct and incorrect predictions; Figure 3 visualizes four-dimensional features with t-SNE and survival markers. The authors acknowledge limitations of saliency maps. [1, pp. 3, 5-6]",
+    "assessment": "These plots help inspect plausibility, but visually plausible heatmaps do not prove causal reliance on pathology. The t-SNE image is exploratory and does not validate outcome prediction. The public code uses squared gradients with Gaussian sigma 5, whereas the paper describes a 5 by 5 kernel; those are different specifications.",
+    "action": "Disclose case-selection and smoothing rules, test image-region occlusion and model randomization, and measure sensitivity to text or borders. Avoid interpreting t-SNE clusters as proof of mortality prediction.",
+    "lecture": "Lecture 9, pp. 11 and 18",
+    "zh": "热图和 t-SNE 提供直观解释，但没有验证解释忠实性。热图好看不能证明模型利用了真正病灶；生存状态在 t-SNE 上聚集，也不能证明死亡风险预测有效。"
+  },
+  {
+    "id": 9,
+    "question": "Are the results reproducible and generalizable?",
+    "verdict": "Broadly reproducible with versioning gaps; generalizability unproven",
+    "evidence": "The authors release data, severity labels, code and model resources. The group notebook reproduces the broad Table 1 ranking. The paper calls for new cohorts with the same scoring system. [1, pp. 1 and 6; 4-5]",
+    "assessment": "Open resources enable verification, but exact recreation is affected by changing metadata and software. The paper describes 208 visualization images while the supplied author notebook stores 199. The group repository does not include its custom metadata_2020.csv or a pinned environment. None of these facts establishes performance on a genuinely new hospital cohort.",
+    "action": "Our experiment fixes a public 2020 commit, records checksums, caches features and publishes split manifests and versions. External validation remains a required next step; close internal reproduction does not demonstrate it.",
+    "lecture": "Lecture 9, pp. 11 and 19",
+    "zh": "公开数据和代码是优点，但历史 metadata 与软件版本变化阻碍完全一致复刻。本次已固定数据提交、权重校验值和划分。内部数值接近不能替代独立医院或时间队列验证。"
+  },
+  {
+    "id": 10,
+    "question": "Is there an appropriate clinical context?",
+    "verdict": "The use case is relevant but the evaluated endpoint is a surrogate",
+    "evidence": "The paper proposes assisting serial monitoring and escalation or de-escalation of care, especially in intensive care. Its supervised targets are radiographic extent and opacity. The discussion acknowledges uncertainty about their relationship with functional and clinical outcomes. [1, pp. 1 and 6]",
+    "assessment": "Quantitative CXR scoring is a clinically understandable research task. However, agreement with radiologists' scores does not show improved management, reduced mortality or safe triage. Restriction to PA images also limits direct applicability to portable AP examinations in intensive care.",
+    "action": "Define intended users, acquisition settings and decision points. Evaluate the added value over expert scoring and clinical variables in prospective workflows before claiming clinical benefit.",
+    "lecture": "Lecture 9, pp. 11 and 20",
+    "zh": "自动量化胸片病变有临床意义，但评分接近专家不等于改善治疗或降低死亡率。研究使用 PA 片，不能直接推及 ICU 常见的便携 AP 片。"
+  },
+  {
+    "id": 11,
+    "question": "What are its limitations?",
+    "verdict": "Important limitations are acknowledged and additional ones remain",
+    "evidence": "The discussion identifies small sample size, sampling bias, difficulty obtaining labels, the need for new cohorts and uncertain linkage to clinical outcomes. Figure 2 illustrates errors at the extremes. [1, pp. 4 and 6]",
+    "assessment": "Additional concerns are limited patient numbers, reader disagreement, incomplete demographic reporting, lack of independent external testing, no formal uncertainty estimates for individual predictions and limited alternative regressors. For one-feature models both predicted scores are affine functions of the same scalar and cannot vary independently.",
+    "action": "Prioritize external validation, patient-level reporting and error analysis by score and acquisition setting. Our alternative-model comparison addresses only one limitation: the narrow regression comparison; it does not resolve the clinical evidence gaps.",
+    "lecture": "Lecture 9, pp. 11 and 21",
+    "zh": "主要限制包括小样本、便利抽样、标注不一致、外部验证缺失及个体不确定性未知。两个分数都来自同一个特征，也限制了它们独立变化的表达能力。新增模型实验只能解决部分方法学问题。"
+  },
+  {
+    "id": 12,
+    "question": "Is the method ready for deployment?",
+    "verdict": "No clinical deployment readiness has been demonstrated",
+    "evidence": "The authors caution against premature implementation and state that diagnostic performance requires appropriate clinical evaluation. The study is a retrospective proof of concept without a prospective workflow or clinical impact trial. [1, p. 6, Discussion]",
+    "assessment": "The evidence supports a research tool for approximating expert radiographic scores. It does not establish safe autonomous decisions, stable performance across hospitals and devices, or effective human-AI use. Output values can fall outside the score range, and the implications of severe underestimation have not been resolved.",
+    "action": "Require independent multicenter and temporal validation, prospective human-AI evaluation, uncertainty and failure handling, monitoring for drift and a defined accountable clinical workflow before routine use.",
+    "lecture": "Lecture 9, pp. 11 and 21",
+    "zh": "结论应为有价值的回顾性概念验证，但尚未证明可临床部署。后续需要外部和前瞻性验证、人机协作评价、失败处理及持续监测，不能据现有结果直接自动决定治疗。"
+  }
+]

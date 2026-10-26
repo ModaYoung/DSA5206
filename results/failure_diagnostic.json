@@ -1,0 +1,13 @@
+{
+  "seed": 27,
+  "alpha": 1000.0,
+  "filename": "ciaa199.pdf-001-c.png",
+  "stored_svd_prediction": -169.90211679616127,
+  "independent_cholesky_prediction": -169.90211679616044,
+  "absolute_solver_difference": 8.242295734817162e-13,
+  "largest_contribution_feature": 1011,
+  "train_feature_sd": 5.918808570484556e-06,
+  "test_feature_value": 0.27812767028808594,
+  "test_standardized_value": 46990.32815202643,
+  "contribution": -169.48775825265662
+}

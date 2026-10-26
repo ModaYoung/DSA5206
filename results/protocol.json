@@ -1,0 +1,44 @@
+{
+  "primary_endpoint": "image-weighted held-out MAE",
+  "primary_alternative": "Ridge 1024",
+  "secondary_alternatives": [
+    "Ridge 4",
+    "Ridge 18",
+    "RBF SVR 4"
+  ],
+  "outer": "50 GroupShuffleSplit seeds 0 through 49; 50 percent of patient groups for test",
+  "inner": "5-fold GroupKFold on outer training patients only; select by MAE",
+  "ridge_alphas": [
+    0.01,
+    0.1,
+    1.0,
+    10.0,
+    100.0,
+    1000.0,
+    10000.0
+  ],
+  "svr_grid": {
+    "C": [
+      0.1,
+      1,
+      10,
+      100
+    ],
+    "epsilon": [
+      0.1,
+      0.3
+    ],
+    "gamma": [
+      "scale",
+      0.1
+    ]
+  },
+  "preprocessing": "StandardScaler fitted in each inner training fold for Ridge and SVR",
+  "prediction_clipping": false,
+  "high_score_definition": {
+    "geographic_mean": 6,
+    "opacity_mean": 4
+  },
+  "high_score_note": "Exploratory imaging-score strata, not validated clinical severity categories",
+  "inference": "Repeated splits are dependent; SD is not a confidence interval. Patient-bootstrap intervals condition on stored out-of-sample predictions."
+}

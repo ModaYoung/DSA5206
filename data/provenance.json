@@ -1,0 +1,39 @@
+{
+  "dataset_repository": "https://github.com/ieee8023/covid-chestxray-dataset",
+  "dataset_commit": "196143d3dd32a2a43ad51d6891d460aaf690d741",
+  "metadata_commit_date": "2020-03-30T23:28:06Z",
+  "metadata_sha256": "250823742f4f60ea76f06c62431f7f96416cd4ec5eb929293299776cd2b49163",
+  "scores_sha256": "a26f308bc405845cebd28cdc72caa21deb734d239c0aff4e487c26949b6d86d7",
+  "model": "densenet121-res224-all",
+  "feature_extractor": "frozen; eval mode; pre-sigmoid logits",
+  "weights": [
+    {
+      "name": "nih-pc-chex-mimic_ch-google-openi-kaggle-densenet121-d121-tw-lr001-rot45-tr15-sc15-seed0-best.pt",
+      "sha256": "56524913dd16a906422e8d8b66a7a5c46be1d82eb7ac012d8103776f1aa68899"
+    }
+  ],
+  "n_images": 94,
+  "n_patients": 65,
+  "pathologies": [
+    "Atelectasis",
+    "Consolidation",
+    "Infiltration",
+    "Pneumothorax",
+    "Edema",
+    "Emphysema",
+    "Fibrosis",
+    "Effusion",
+    "Pneumonia",
+    "Pleural_Thickening",
+    "Cardiomegaly",
+    "Nodule",
+    "Mass",
+    "Hernia",
+    "Lung Lesion",
+    "Fracture",
+    "Lung Opacity",
+    "Enlarged Cardiomediastinum"
+  ],
+  "feature_npz_sha256": "326f61ca594d9aaafcfa5b0ac32406aa6a2d5fc819b739e9840e8092dd9e5d76",
+  "not_identical_claim": "Historical cohort reconstructed from a fixed public snapshot; the team metadata_2020.csv was not available in its repository."
+}
