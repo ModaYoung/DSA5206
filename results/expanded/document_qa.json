@@ -1,0 +1,8 @@
+{
+  "pdf_pages": 17,
+  "pdf_sha256": "391fc7d91e5eef62c817a47daae68f81761d5d1acc84e8754da6a1de0a321548",
+  "docx_sha256": "72995ba1f7d2a1a3b509fbea50c45e7201c462c742bbbc6c9067e4fb20786420",
+  "all_17_rendered_pages_inspected": true,
+  "rendering": "Word COM PDF export followed by Poppler PNG rendering; canonical render_docx could not locate LibreOffice",
+  "layout_defects_found": false
+}

@@ -1,0 +1,17 @@
+{
+  "seed": 15,
+  "target": "Geographic Extent",
+  "diagnostic_refits_not_in_benchmark_count": 2,
+  "comparisons": [
+    {
+      "BLAS_threads": 1,
+      "max_difference_from_initial": 0.0008079334777608693,
+      "max_difference_from_extension": 8.881784197001252e-16
+    },
+    {
+      "BLAS_threads": 2,
+      "max_difference_from_initial": 4.440892098500626e-16,
+      "max_difference_from_extension": 0.0008079334777608693
+    }
+  ]
+}

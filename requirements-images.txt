@@ -6,3 +6,10 @@ scikit-image==0.24.0
 imageio==2.36.0
 requests==2.32.3
 tqdm==4.67.1
+
+transformers==4.48.3
+huggingface-hub==0.36.2
+safetensors==0.8.0
+hi-ml-multimodal==0.2.2
+einops==0.8.2
+timm==1.0.30

@@ -1,0 +1,31 @@
+target,model,seed,chosen_model,inner_MAE,best_params
+Geographic Extent,Training selected OLS,0,Bounded OLS 4,1.1235890534929756,{}
+Geographic Extent,Training selected modern,0,BioViL-T PCA ridge,0.7055762479971143,"{'estimator__model__alpha': 0.01, 'estimator__pca__n_components': 10}"
+Geographic Extent,Training selected all,0,BioViL-T PCA ridge,0.7055762479971143,"{'estimator__model__alpha': 0.01, 'estimator__pca__n_components': 10}"
+Geographic Extent,Training selected OLS,1,Bounded OLS 1,1.0739849601151548,{}
+Geographic Extent,Training selected modern,1,BioViL PCA ridge,0.7474589355917516,"{'estimator__model__alpha': 1.0, 'estimator__pca__n_components': 10}"
+Geographic Extent,Training selected all,1,BioViL PCA ridge,0.7474589355917516,"{'estimator__model__alpha': 1.0, 'estimator__pca__n_components': 10}"
+Geographic Extent,Training selected OLS,2,Bounded OLS 4,1.0914203145446362,{}
+Geographic Extent,Training selected modern,2,BioViL PCA ridge,0.7645494595421432,"{'estimator__model__alpha': 0.01, 'estimator__pca__n_components': 10}"
+Geographic Extent,Training selected all,2,BioViL PCA ridge,0.7645494595421432,"{'estimator__model__alpha': 0.01, 'estimator__pca__n_components': 10}"
+Geographic Extent,Training selected OLS,3,Bounded OLS 1,0.9945956289263714,{}
+Geographic Extent,Training selected modern,3,BioViL-T PCA ridge,0.6520509784435246,"{'estimator__model__alpha': 0.01, 'estimator__pca__n_components': 10}"
+Geographic Extent,Training selected all,3,BioViL-T PCA ridge,0.6520509784435246,"{'estimator__model__alpha': 0.01, 'estimator__pca__n_components': 10}"
+Geographic Extent,Training selected OLS,4,Bounded OLS 1,1.0876058373755821,{}
+Geographic Extent,Training selected modern,4,BioViL PCA ridge,0.6649658815588264,"{'estimator__model__alpha': 0.01, 'estimator__pca__n_components': 10}"
+Geographic Extent,Training selected all,4,BioViL PCA ridge,0.6649658815588264,"{'estimator__model__alpha': 0.01, 'estimator__pca__n_components': 10}"
+Opacity,Training selected OLS,0,Bounded OLS 4,0.7119267798781208,{}
+Opacity,Training selected modern,0,BioViL-T PCA ridge,0.6411833305718393,"{'estimator__model__alpha': 0.01, 'estimator__pca__n_components': 5}"
+Opacity,Training selected all,0,BioViL-T PCA ridge,0.6411833305718393,"{'estimator__model__alpha': 0.01, 'estimator__pca__n_components': 5}"
+Opacity,Training selected OLS,1,Bounded OLS 4,0.7802753372881702,{}
+Opacity,Training selected modern,1,BioViL-T PCA ridge,0.6030761479200628,"{'estimator__model__alpha': 0.01, 'estimator__pca__n_components': 15}"
+Opacity,Training selected all,1,BioViL-T PCA ridge,0.6030761479200628,"{'estimator__model__alpha': 0.01, 'estimator__pca__n_components': 15}"
+Opacity,Training selected OLS,2,Bounded OLS 4,0.7101888423539774,{}
+Opacity,Training selected modern,2,BioViL-T PCA ridge,0.6095181667493856,"{'estimator__model__alpha': 1.0, 'estimator__pca__n_components': 5}"
+Opacity,Training selected all,2,BioViL-T PCA ridge,0.6095181667493856,"{'estimator__model__alpha': 1.0, 'estimator__pca__n_components': 5}"
+Opacity,Training selected OLS,3,Bounded OLS 4,0.7052414961389127,{}
+Opacity,Training selected modern,3,BioViL-T PCA ridge,0.6375550924684087,"{'estimator__model__alpha': 0.01, 'estimator__pca__n_components': 5}"
+Opacity,Training selected all,3,BioViL-T PCA ridge,0.6375550924684087,"{'estimator__model__alpha': 0.01, 'estimator__pca__n_components': 5}"
+Opacity,Training selected OLS,4,Bounded OLS 4,0.792112545308646,{}
+Opacity,Training selected modern,4,BioViL-T projected SVR,0.6421731344726908,"{'estimator__model__C': 1.0, 'estimator__model__epsilon': 0.1, 'estimator__model__gamma': 1.0}"
+Opacity,Training selected all,4,BioViL-T projected SVR,0.6421731344726908,"{'estimator__model__C': 1.0, 'estimator__model__epsilon': 0.1, 'estimator__model__gamma': 1.0}"

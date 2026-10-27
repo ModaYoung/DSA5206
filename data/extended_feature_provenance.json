@@ -1,0 +1,91 @@
+{
+  "biovil": {
+    "repository": "microsoft/BiomedVLP-CXR-BERT-specialized",
+    "revision": "d233f2f4e145bba80c80c60af67349873b81c623",
+    "weight_file": "biovil_image_resnet50_proj_size_128.pt",
+    "weight_sha256": "118c4bb1c16d4e69b7c9b7f2ff5b2c0a79242059acf20bd2ed3068045b8f6b98",
+    "features_sha256": "9465be921213cad38a357fdcd5994bbc49a2e69265baa422a29e1269d01d81ab",
+    "preprocessing": "official hi-ml-multimodal 0.2.2 loader minmax uint8 grayscale; resize short side 512; center crop 480; ToTensor; repeat 3 channels; single image",
+    "shapes": {
+      "pooled": [
+        94,
+        2048
+      ],
+      "projected": [
+        94,
+        128
+      ]
+    },
+    "seconds": 216.71799999999348,
+    "frozen": true,
+    "labels_used_for_feature_extraction": false
+  },
+  "biovil_t": {
+    "repository": "microsoft/BiomedVLP-BioViL-T",
+    "revision": "301f526e823b805d3fe712d0cf06a66f042789c5",
+    "weight_file": "biovil_t_image_model_proj_size_128.pt",
+    "weight_sha256": "b2399d73dc2a68b9f3a1950e864ae0ecd24093fb07aa459d7e65807ebdc0fb77",
+    "features_sha256": "a2b017b37ed8cefd533822e86d24ef1cbbbaf7d4d68fc2edbccabcc36d033dc5",
+    "preprocessing": "official hi-ml-multimodal 0.2.2 loader minmax uint8 grayscale; resize short side 512; center crop 448; ToTensor; repeat 3 channels; single image",
+    "shapes": {
+      "pooled": [
+        94,
+        512
+      ],
+      "projected": [
+        94,
+        128
+      ]
+    },
+    "seconds": 198.20300000003772,
+    "frozen": true,
+    "labels_used_for_feature_extraction": false
+  },
+  "rad_dino": {
+    "repository": "microsoft/rad-dino",
+    "revision": "110cbc18d5133582e320b43d53bf5c44e410c936",
+    "weight_file": "model.safetensors",
+    "weight_sha256": "dbfb9f54459c38773505de64a6ab7807bdcb392610fe1e697166342e43fb91ae",
+    "features_sha256": "ab73b2299484f39987f7a617af45f272ca35801a4a67edc2fe51c0773c9208d5",
+    "preprocessing": {
+      "processor": {
+        "_processor_class": null,
+        "image_processor_type": "BitImageProcessor",
+        "do_resize": true,
+        "size": {
+          "shortest_edge": 518
+        },
+        "resample": 3,
+        "do_center_crop": true,
+        "crop_size": {
+          "height": 518,
+          "width": 518
+        },
+        "do_rescale": true,
+        "rescale_factor": 0.00392156862745098,
+        "do_normalize": true,
+        "image_mean": [
+          0.5307,
+          0.5307,
+          0.5307
+        ],
+        "image_std": [
+          0.2583,
+          0.2583,
+          0.2583
+        ],
+        "do_convert_rgb": true
+      },
+      "feature": "final normalized CLS token; native checkpoint resolution; no target fine tuning"
+    },
+    "shapes": {
+      "cls": [
+        94,
+        768
+      ]
+    },
+    "seconds": 147.36000000004424,
+    "frozen": true,
+    "labels_used_for_feature_extraction": false
+  }
+}

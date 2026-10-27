@@ -1,0 +1,31 @@
+{
+  "n_images": 94,
+  "n_patients": 65,
+  "initial_outer_fits": 900,
+  "expanded_half_outer_fits": 2700,
+  "expanded_fivefold_outer_fits": 270,
+  "selector_half_evaluations": 300,
+  "selector_fivefold_evaluations": 30,
+  "total_actual_outer_fits": 3870,
+  "all_half_metric_rows": 3900,
+  "best": {
+    "Geographic Extent": {
+      "original_reference": "Published OLS 1",
+      "bounded_reference": "Bounded OLS 1",
+      "best_modern": "BioViL PCA ridge",
+      "best_alternative": "BioViL PCA ridge",
+      "lowest_observed_model": "BioViL PCA ridge"
+    },
+    "Opacity": {
+      "original_reference": "Published OLS 4",
+      "bounded_reference": "Bounded OLS 4",
+      "best_modern": "BioViL-T PCA ridge",
+      "best_alternative": "BioViL-T PCA ridge",
+      "lowest_observed_model": "BioViL-T PCA ridge"
+    }
+  },
+  "protocol_sha256": "f8a38a7780c0b45b209281ba06515023b79e0e53c9e2bb49c950c72dabe6e02c",
+  "fivefold_predictions_unique": true,
+  "all_predictions_finite": true,
+  "model_selection_uses": "inner training CV only; individual leaderboard rankings remain exploratory"
+}

@@ -1,0 +1,1 @@
+PASS: 3300 held-out metric rows recomputed; patient separation, target alignment, bounds, training-only selection and feature hashes verified. OLS 1/4/18 raw fits match the initial run; OLS 1024 differs by at most 0.001 under the audited BLAS thread change.
