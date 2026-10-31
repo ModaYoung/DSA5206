@@ -4,6 +4,7 @@ COVID-19 chest radiograph severity prediction. Part II applies the 12 classroom 
 
 ## 成果入口
 
+- [完整答辩 PPT（39 页，含中文演讲备注）](presentations/DSA5206_Full_Project_Presentation.pptx) · [使用说明](presentations/README.md)
 - [更新后的报告 PDF](reports/DSA5206_PartII_Report.pdf) · [可编辑 Word](reports/DSA5206_PartII_Report.docx)
 - [中文分析说明](PartII_说明与分析.md)
 - [已执行的分析 notebook](PartII_Analysis.ipynb)
